@@ -1023,7 +1023,7 @@ union Data {
 # 10. 动态内存：`malloc` / `calloc` / `realloc` / `free`
 
 ## 10.1 `malloc`
-
+* `malloc` 返回的是地址值，所以用指针接收。
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -1049,8 +1049,6 @@ malloc(100 * sizeof(int))
 ```
 
 意思是申请 100 个 `int` 的空间。
-
-`malloc` 返回的是地址值，所以用指针接收。
 
 ---
 
