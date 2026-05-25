@@ -817,6 +817,15 @@ s1.name = "Tom";  // 错误
 ```c
 strcpy(s1.name, "Tom");
 ```
+如果 `name` 是 char *name
+```
+struct Student {
+    char *name;
+};
+
+struct Student s1;
+s1.name = "Tom";   // ✅ 可以
+```
 
 ---
 
