@@ -961,6 +961,9 @@ printf("%d\n", students[1].age);
 # 9. 联合体 `union`
 
 ## 9.1 `union` 基本概念
+union（联合体） 很像 struct，但关键区别是：
+
+* struct 里面每个成员都有自己的内存；union 里面所有成员共用同一块内存。
 
 ```c
 union Data {
