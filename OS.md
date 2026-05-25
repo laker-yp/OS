@@ -1370,7 +1370,7 @@ typedef just for giving a new name, after that ,you can just use `Node n1;` but 
 #include <stdlib.h>
 
 Node* createNode(int value) {
-    Node* newNode = malloc(sizeof(Node));
+    Node* newNode = malloc(sizeof(Node));  
 
     newNode->data = value;
     newNode->next = NULL;
@@ -1388,8 +1388,8 @@ void insert(Node** head, int value) {
     Node* newNode = createNode(value);
 
     if (*head == NULL || (*head)->data >= value) {
-        newNode->next = *head;
-        *head = newNode;
+        newNode->next = *head;  //让新节点的 next 指向原来的第一个节点。
+        *head = newNode;  //把链表的头指针改成新节点
         return;
     }
 
