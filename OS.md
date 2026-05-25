@@ -898,6 +898,10 @@ p->age = 30;
 ```c
 (*p).age
 ```
+so
+
+* x->data    x 是 pointer to struct
+* x.data     x 是 struct 本体，不是 pointer
 
 结构体指针访问成员时一般用 `->`，更方便。
 
