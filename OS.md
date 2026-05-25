@@ -1176,6 +1176,15 @@ int* p = malloc(sizeof(int));
 
 // 忘记 free(p)
 ```
+another case:
+```c
+p = realloc(p, 200 * sizeof(int));
+```
+如果 realloc 成功：p 会指向新的内存，没问题。
+
+但是如果 realloc 失败：p = NULL;
+
+这时候你原来那块内存其实没有被`free`，但你已经找不到它了。
 
 ---
 
