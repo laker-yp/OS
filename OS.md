@@ -1076,6 +1076,9 @@ free(p);  // double free，错误
 ---
 
 ## 10.3 `calloc`
+* malloc 只申请内存，不初始化；里面的值是 shit code
+
+* calloc 申请内存，并把内容初始化为 0。
 
 ```c
 int* p1 = calloc(10, sizeof(int));
