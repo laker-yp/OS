@@ -1083,7 +1083,7 @@ free(p);  // double free，错误
 ```c
 int* p1 = calloc(10, sizeof(int));
 ```
-
+* malloc 要的是“总字节数”；calloc 要的是“几个元素 × 每个元素多大”。
 `calloc` 申请空间并初始化为 0。
 
 所以 `p1` 指向的 10 个 `int` 初始值都是 0。
