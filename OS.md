@@ -1355,6 +1355,7 @@ typedef struct Node {
     struct Node* next;
 } Node;
 ```
+typedef just for giving a new name, after that ,you can just use `Node n1;` but not`struct Node n1;`
 
 一个链表节点包含：
 
