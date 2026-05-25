@@ -1546,34 +1546,36 @@ int main() {
 ## 13.1 创建线程
 
 ```c
-#include <stdio.h>
-#include <pthread.h>
-#include <unistd.h>
+#include <stdio.h>      
+#include <pthread.h>    
+#include <unistd.h>     
 
-void* do_one_thing(void* arg) {
+// 线程函数 1
+void* do111(void* arg) {
     for (int i = 0; i < 200; i++) {
-        printf("doing one thing\n");
+        printf("doing111\n");
     }
-
     return NULL;
 }
-
-void* do_another_thing(void* arg) {
+// 线程函数 2 =》被第二个线程执行
+void* do222(void* arg) {
     for (int i = 0; i < 200; i++) {
-        printf("doing another\n");
+        printf("doing222\n");
     }
-
     return NULL;
 }
 
 int main() {
-    pthread_t thread1, thread2;
+    
+    pthread_t thread1, thread2;  //相当于做准备：声明一个变量，这个变量用来保存线程的身份信息。
 
-    pthread_create(&thread1, NULL, do_one_thing, NULL);
-    pthread_create(&thread2, NULL, do_another_thing, NULL);
-
-    pthread_join(thread1, NULL);
-    pthread_join(thread2, NULL);
+    
+    pthread_create(&thread1, NULL, do111, NULL);   // 创建第一个线程
+    pthread_create(&thread2, NULL, do222, NULL);   // 创建第二个线程
+   
+    // 如果不 join，main 可能会提前结束，导致子线程还没打印完程序就退出
+    pthread_join(thread1, NULL);                  // 等待 thread1 执行完
+    pthread_join(thread2, NULL);                  // 等待 thread2 执行完
 
     return 0;
 }
