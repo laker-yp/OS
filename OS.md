@@ -1929,6 +1929,20 @@ Client 端：
 4. `write` 发送数据
 5. `read` 接收服务器回复
 6. `close` 关闭连接
+```
+Client                                Server
+
+socket()                              socket()
+   |                                     |
+connect()  ----------------------->   bind()   【绑定IP和port】
+   |                                  listen() 【开始监听】
+   |                                  accept() 【接受客户端连接】
+   |                                     |
+send()    ------------------------>   recv()
+recv()    <------------------------   send()
+   |                                     |
+close()                               close()
+```
 
 ---
 
