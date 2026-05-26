@@ -1889,21 +1889,21 @@ pthread_rwlock_unlock(&lock);
 ---
 
 ## 15.5 读写锁规则
+rd规则
 
 `pthread_rwlock_rdlock`：
 
-```text
-如果没有线程持有锁：可以拿到读锁。
-如果其他线程持有读锁：也可以拿到读锁。
-如果有线程持有写锁：等待。
-```
-
+* 能拿rd的情况：
+ * 没有t有锁
+ * 其他t只有rd
+* 不能拿rd的情况：
+ *有t拿到了wr
+  
+wr规则
 `pthread_rwlock_wrlock`：
 
-```text
-如果没有任何线程持有读锁或写锁：可以拿到写锁。
-否则等待。
-```
+* 能拿wr的情况：
+ * 任何t都没有wr和rd
 
 ---
 
