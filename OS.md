@@ -1697,20 +1697,12 @@ pthread_cond_wait(&cond, &mutex);
 推荐写法：
 
 ```c
-while (data_ready == 0) {
+while【而不是if】 (data_ready == 0) {
     pthread_cond_wait(&cond, &mutex);
 }
 ```
 
-不用：
-
-```c
-if (data_ready == 0) {
-    pthread_cond_wait(&cond, &mutex);
-}
-```
-
-原因：
+原因：if只检查一次，while会一直检擦
 
 线程被唤醒后，不代表条件一定成立。可能有 spurious wakeup，也可能其他线程先抢走资源。因此醒来后要再次检查条件。
 
