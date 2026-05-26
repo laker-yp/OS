@@ -25,6 +25,7 @@
 ---
 小笔记
 * xalloc返回的是指针，所以，所以左边肯定是一个*
+* return后的东西相当于作废，return后面有unlock那意味着deadlock，有free()意味着leak
 
 # 1. C 程序基本结构
 
