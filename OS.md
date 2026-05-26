@@ -1715,38 +1715,36 @@ while【而不是if】 (data_ready == 0) {
 #include <pthread.h>
 #include <unistd.h>
 
-int data = 0;
+int aim = 0;
 int data_ready = 0;
 
-pthread_mutex_t mutex;
-pthread_cond_t cond;
+pthread_mutex_t mutex;  //t结尾的一般代表准备/申明，相当于 int a;
+pthread_cond_t cond;  //申明一个条件变量 让消费者在 data_ready==0 时睡觉，等生产者 signal 唤醒
 
+//生产者线程
 void* producer(void* arg) {
-    sleep(2);
+    sleep(2); //模拟过了2s
 
-    pthread_mutex_lock(&mutex);
+    pthread_mutex_lock(&mutex);  //锁门
 
-    data = 100;
+    aim = 100;
     data_ready = 1;
-
     printf("生产者的数据已经处理并准备好了\n");
+    pthread_cond_signal(&cond);//发送 signal，“叫醒”，然消费者检查data_ready
 
-    pthread_cond_signal(&cond);
-
-    pthread_mutex_unlock(&mutex);
+    pthread_mutex_unlock(&mutex);  //开锁
 
     return NULL;
 }
-
+//消费者线程
 void* consumer(void* arg) {
     pthread_mutex_lock(&mutex);
 
     while (data_ready == 0) {
         printf("消费者正在等待中...\n");
-        pthread_cond_wait(&cond, &mutex);
+        pthread_cond_wait(&cond, &mutex); //1释放mutex 2进入等 3被唤醒拿mutex，再看看data_ready，不等于0再跳出循环
     }
-
-    printf("消费者：被生产者唤醒，得到数据 = %d\n", data);
+    printf("消费者：被生产者唤醒，得到数据 = %d\n", data);  // 能走到这里，说明data_ready != 0
 
     pthread_mutex_unlock(&mutex);
 
@@ -1754,18 +1752,18 @@ void* consumer(void* arg) {
 }
 
 int main() {
-    pthread_t t1, t2;
+    pthread_t t1, t2;  // 定义两个线程变量
 
-    pthread_mutex_init(&mutex, NULL);
-    pthread_cond_init(&cond, NULL);
+    pthread_mutex_init(&mutex, NULL); // 初始化 mutex
+    pthread_cond_init(&cond, NULL);   // 第二个参数 NULL 表示使用默认属性
 
-    pthread_create(&t1, NULL, consumer, NULL);
-    pthread_create(&t2, NULL, producer, NULL);
+    pthread_create(&t1, NULL, consumer, NULL);  //创造线程t1执行consmer
+    pthread_create(&t2, NULL, producer, NULL);  //创造线程t2执行producer
 
-    pthread_join(t1, NULL);
+    pthread_join(t1, NULL); // 等待t1线程结束再结束main
     pthread_join(t2, NULL);
 
-    pthread_mutex_destroy(&mutex);
+    pthread_mutex_destroy(&mutex);  // 销毁 mutex
     pthread_cond_destroy(&cond);
 
     return 0;
