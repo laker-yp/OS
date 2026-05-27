@@ -9,6 +9,93 @@
 
 ---
 
+## 目录跳转
+
+  - [0. 总体考试地图](#0-总体考试地图)
+- [1. Linux Kernel Programming](#1-linux-kernel-programming)
+  - [1.1 Kernel 的基本结构 ⭐⭐⭐](#1-1-kernel-的基本结构)
+  - [1.2 Kernel Programming 的危险性 ⭐⭐⭐⭐](#1-2-kernel-programming-的危险性)
+  - [1.3 System Calls ⭐⭐⭐⭐⭐](#1-3-system-calls)
+  - [1.4 User Space 和 Kernel Space 的数据隔离 ⭐⭐⭐⭐⭐](#1-4-user-space-和-kernel-space-的数据隔离)
+  - [1.5 Interrupts（中断） ⭐⭐⭐⭐⭐](#1-5-interrupts-中断)
+  - [1.6 Process Context vs Interrupt Context ⭐⭐⭐⭐⭐](#1-6-process-context-vs-interrupt-context)
+  - [1.7 Kernel Modules ⭐⭐](#1-7-kernel-modules)
+  - [1.8 Kernel Concurrency ⭐⭐⭐⭐⭐](#1-8-kernel-concurrency)
+  - [1.9 Mutex/Semaphore vs Spinlock ⭐⭐⭐⭐⭐](#1-9-mutex-semaphore-vs-spinlock)
+- [2. Linux Device Drivers](#2-linux-device-drivers)
+  - [2.1 User Space 视角：/dev 特殊文件 ⭐⭐⭐⭐](#2-1-user-space-视角-dev-特殊文件)
+  - [2.2 Kernel Side：file operations ⭐⭐⭐⭐](#2-2-kernel-side-file-operations)
+  - [2.3 Device Categorisation ⭐⭐](#2-3-device-categorisation)
+  - [2.4 Interrupt Handling in Device Drivers ⭐⭐⭐⭐⭐](#2-4-interrupt-handling-in-device-drivers)
+  - [2.5 Top Half / Bottom Half ⭐⭐⭐⭐⭐](#2-5-top-half-bottom-half)
+- [3. Synchronisation](#3-synchronisation)
+  - [3.1 为什么需要 Synchronisation？ ⭐⭐⭐⭐⭐](#3-1-为什么需要-synchronisation)
+  - [3.2 Race Condition ⭐⭐⭐⭐⭐](#3-2-race-condition)
+  - [3.3 Critical Section ⭐⭐⭐⭐⭐](#3-3-critical-section)
+  - [3.4 Critical Section Solution Criteria ⭐⭐⭐⭐⭐](#3-4-critical-section-solution-criteria)
+  - [3.5 Peterson’s Solution ⭐⭐](#3-5-peterson’s-solution)
+  - [3.6 Hardware Synchronisation：TestAndSet ⭐⭐⭐⭐](#3-6-hardware-synchronisation-testandset)
+  - [3.7 Busy Waiting / Spinning ⭐⭐⭐⭐](#3-7-busy-waiting-spinning)
+  - [3.8 Sleep/Wakeup 和 Missing Wake-up ⭐⭐⭐⭐⭐](#3-8-sleep-wakeup-和-missing-wake-up)
+  - [3.9 Semaphore ⭐⭐⭐⭐⭐](#3-9-semaphore)
+  - [3.10 Producer-Consumer / Bounded Buffer ⭐⭐⭐⭐⭐](#3-10-producer-consumer-bounded-buffer)
+  - [3.11 Readers-Writers Problem ⭐⭐⭐⭐](#3-11-readers-writers-problem)
+  - [3.12 Deadlock 和 Priority Inversion ⭐⭐⭐⭐](#3-12-deadlock-和-priority-inversion)
+- [4. Process Concept and Context Switching](#4-process-concept-and-context-switching)
+  - [4.1 What is a Process? ⭐⭐⭐⭐⭐](#4-1-what-is-a-process)
+  - [4.2 Process in Memory ⭐⭐⭐⭐⭐](#4-2-process-in-memory)
+  - [4.3 Process States ⭐⭐⭐⭐⭐](#4-3-process-states)
+  - [4.4 PCB：Process Control Block ⭐⭐⭐⭐⭐](#4-4-pcb-process-control-block)
+  - [4.5 Process Creation ⭐⭐⭐⭐](#4-5-process-creation)
+  - [4.6 Process Termination ⭐⭐⭐](#4-6-process-termination)
+  - [4.7 Context Switch ⭐⭐⭐⭐⭐](#4-7-context-switch)
+- [5. Scheduling](#5-scheduling)
+  - [5.1 Scheduling Problem ⭐⭐⭐⭐⭐](#5-1-scheduling-problem)
+  - [5.2 Scheduling Queues ⭐⭐⭐⭐](#5-2-scheduling-queues)
+  - [5.3 CPU-I/O Burst Cycle ⭐⭐⭐⭐⭐](#5-3-cpu-i-o-burst-cycle)
+  - [5.4 Preemptive Scheduling ⭐⭐⭐⭐⭐](#5-4-preemptive-scheduling)
+  - [5.5 Scheduling Criteria ⭐⭐⭐⭐⭐](#5-5-scheduling-criteria)
+  - [5.6 CPU-bound vs I/O-bound ⭐⭐⭐⭐⭐](#5-6-cpu-bound-vs-i-o-bound)
+  - [5.7 FCFS：First-Come, First-Served ⭐⭐⭐⭐](#5-7-fcfs-first-come-first-served)
+  - [5.8 Round Robin ⭐⭐⭐⭐⭐](#5-8-round-robin)
+  - [5.9 SJF：Shortest Job First ⭐⭐⭐⭐](#5-9-sjf-shortest-job-first)
+  - [5.10 Priority Scheduling ⭐⭐⭐⭐⭐](#5-10-priority-scheduling)
+  - [5.11 Multilevel Queue Scheduling ⭐⭐⭐⭐](#5-11-multilevel-queue-scheduling)
+  - [5.12 Multiprocessor Scheduling ⭐⭐](#5-12-multiprocessor-scheduling)
+- [6. Memory Management](#6-memory-management)
+  - [6.1 Memory Management 的基本问题 ⭐⭐⭐⭐⭐](#6-1-memory-management-的基本问题)
+  - [6.2 Address Binding / Mapping ⭐⭐⭐⭐](#6-2-address-binding-mapping)
+  - [6.3 Dynamic Linking ⭐⭐⭐](#6-3-dynamic-linking)
+  - [6.4 Swapping ⭐⭐⭐⭐⭐](#6-4-swapping)
+  - [6.5 Fragmentation ⭐⭐⭐⭐](#6-5-fragmentation)
+  - [6.6 Paging ⭐⭐⭐⭐⭐](#6-6-paging)
+  - [6.7 Segmentation ⭐⭐⭐⭐⭐](#6-7-segmentation)
+  - [6.8 Paging vs Segmentation ⭐⭐⭐⭐⭐](#6-8-paging-vs-segmentation)
+  - [6.9 Virtual Memory ⭐⭐⭐⭐⭐](#6-9-virtual-memory)
+  - [6.10 Demand Paging ⭐⭐⭐⭐⭐](#6-10-demand-paging)
+  - [6.11 Page Replacement Algorithms ⭐⭐⭐⭐⭐](#6-11-page-replacement-algorithms)
+  - [6.12 Thrashing ⭐⭐⭐⭐⭐](#6-12-thrashing)
+  - [6.13 Linux Memory Notes ⭐⭐](#6-13-linux-memory-notes)
+- [7. File Systems](#7-file-systems)
+  - [7.1 File System 的功能 ⭐⭐⭐⭐⭐](#7-1-file-system-的功能)
+  - [7.2 Linked Allocation ⭐⭐⭐⭐](#7-2-linked-allocation)
+  - [7.3 Indexed Allocation / inode ⭐⭐⭐⭐⭐](#7-3-indexed-allocation-inode)
+  - [7.4 FAT Example ⭐⭐](#7-4-fat-example)
+  - [7.5 FAT Limits ⭐](#7-5-fat-limits)
+  - [7.6 Caching ⭐⭐⭐⭐](#7-6-caching)
+  - [7.7 Journaling File Systems ⭐⭐⭐⭐](#7-7-journaling-file-systems)
+  - [7.8 Disk Access and Disk Scheduling ⭐⭐⭐⭐](#7-8-disk-access-and-disk-scheduling)
+- [8. 最容易被忽略但考试爱问的连接点](#8-最容易被忽略但考试爱问的连接点)
+  - [8.1 printf/scanf 与 system call](#8-1-printf-scanf-与-system-call)
+  - [8.2 为什么 producer 也要 wait？](#8-2-为什么-producer-也要-wait)
+  - [8.3 为什么 condition variable 总是配 mutex？](#8-3-为什么-condition-variable-总是配-mutex)
+  - [8.4 最大化 parallelism 的答题思想](#8-4-最大化-parallelism-的答题思想)
+- [9. 图片/背景材料一句话带过清单](#9-图片-背景材料一句话带过清单)
+- [10. 最后复习优先级](#10-最后复习优先级)
+
+---
+
+<a id="0-总体考试地图"></a>
 ## 0. 总体考试地图
 
 这七份课件主要覆盖以下 OS 大板块：
@@ -74,12 +161,14 @@
 
 ---
 
+<a id="1-linux-kernel-programming"></a>
 # 1. Linux Kernel Programming
 
 对应课件：`os_03_kernelProgramming.pdf`
 
 ---
 
+<a id="1-1-kernel-的基本结构"></a>
 ## 1.1 Kernel 的基本结构 ⭐⭐⭐
 
 PPT 给出的简化内核结构类似：
@@ -110,6 +199,7 @@ while (true) {
 
 ---
 
+<a id="1-2-kernel-programming-的危险性"></a>
 ## 1.2 Kernel Programming 的危险性 ⭐⭐⭐⭐
 
 PPT 核心句：
@@ -137,6 +227,7 @@ Kernel code is dangerous because it runs with high privileges and can access har
 
 ---
 
+<a id="1-3-system-calls"></a>
 ## 1.3 System Calls ⭐⭐⭐⭐⭐
 
 PPT 核心：
@@ -169,6 +260,7 @@ Library functions such as printf or scanf are not themselves necessarily system 
 
 ---
 
+<a id="1-4-user-space-和-kernel-space-的数据隔离"></a>
 ## 1.4 User Space 和 Kernel Space 的数据隔离 ⭐⭐⭐⭐⭐
 
 PPT 核心：
@@ -217,6 +309,7 @@ copy_to_user(user_buffer, kernel_buffer, length);
 
 ---
 
+<a id="1-5-interrupts-中断"></a>
 ## 1.5 Interrupts（中断） ⭐⭐⭐⭐⭐
 
 PPT 核心：
@@ -259,6 +352,7 @@ Interrupt handlers must be short because they run asynchronously and may block o
 
 ---
 
+<a id="1-6-process-context-vs-interrupt-context"></a>
 ## 1.6 Process Context vs Interrupt Context ⭐⭐⭐⭐⭐
 
 | Context | 中文 | 什么时候出现 | 能不能 sleep | 能不能访问 user data |
@@ -281,6 +375,7 @@ Interrupt handlers must be short because they run asynchronously and may block o
 
 ---
 
+<a id="1-7-kernel-modules"></a>
 ## 1.7 Kernel Modules ⭐⭐
 
 PPT：
@@ -295,6 +390,7 @@ PPT：
 
 ---
 
+<a id="1-8-kernel-concurrency"></a>
 ## 1.8 Kernel Concurrency ⭐⭐⭐⭐⭐
 
 PPT 核心：
@@ -314,6 +410,7 @@ Kernel 里共享数据结构可能被不同 context 同时访问：
 
 ---
 
+<a id="1-9-mutex-semaphore-vs-spinlock"></a>
 ## 1.9 Mutex/Semaphore vs Spinlock ⭐⭐⭐⭐⭐
 
 | Lock | 行为 | 优点 | 缺点 | 能否在 interrupt context 使用 |
@@ -335,12 +432,14 @@ If the critical section can be executed in interrupt context, a spinlock is appr
 
 ---
 
+<a id="2-linux-device-drivers"></a>
 # 2. Linux Device Drivers
 
 对应课件：`os_04_deviceDriver.pdf`
 
 ---
 
+<a id="2-1-user-space-视角-dev-特殊文件"></a>
 ## 2.1 User Space 视角：/dev 特殊文件 ⭐⭐⭐⭐
 
 PPT 核心：
@@ -366,6 +465,7 @@ Linux 尽量把设备抽象成文件。你不是直接操作硬件，而是通�
 
 ---
 
+<a id="2-2-kernel-side-file-operations"></a>
 ## 2.2 Kernel Side：file operations ⭐⭐⭐⭐
 
 PPT 核心：
@@ -393,6 +493,7 @@ kernel calls driver's read function
 
 ---
 
+<a id="2-3-device-categorisation"></a>
 ## 2.3 Device Categorisation ⭐⭐
 
 PPT 提到：
@@ -405,6 +506,7 @@ PPT 提到：
 
 ---
 
+<a id="2-4-interrupt-handling-in-device-drivers"></a>
 ## 2.4 Interrupt Handling in Device Drivers ⭐⭐⭐⭐⭐
 
 设备中断流程：
@@ -422,6 +524,7 @@ PPT 提到：
 
 ---
 
+<a id="2-5-top-half-bottom-half"></a>
 ## 2.5 Top Half / Bottom Half ⭐⭐⭐⭐⭐
 
 PPT 核心：
@@ -446,6 +549,7 @@ The top half runs immediately in response to the hardware interrupt and should d
 
 ---
 
+<a id="3-synchronisation"></a>
 # 3. Synchronisation
 
 对应课件：`os_06_sync.pdf`
@@ -454,6 +558,7 @@ The top half runs immediately in response to the hardware interrupt and should d
 
 ---
 
+<a id="3-1-为什么需要-synchronisation"></a>
 ## 3.1 为什么需要 Synchronisation？ ⭐⭐⭐⭐⭐
 
 PPT 背景：
@@ -486,6 +591,7 @@ count--;
 
 ---
 
+<a id="3-2-race-condition"></a>
 ## 3.2 Race Condition ⭐⭐⭐⭐⭐
 
 PPT 展示：
@@ -527,6 +633,7 @@ Race condition 是指多个线程/进程并发访问共享数据，最终结果�
 
 ---
 
+<a id="3-3-critical-section"></a>
 ## 3.3 Critical Section ⭐⭐⭐⭐⭐
 
 `critical section` 是访问共享资源、如果并发执行就可能出错的代码段。
@@ -549,6 +656,7 @@ A critical section is a part of a program where shared data or shared resources 
 
 ---
 
+<a id="3-4-critical-section-solution-criteria"></a>
 ## 3.4 Critical Section Solution Criteria ⭐⭐⭐⭐⭐
 
 PPT 三个标准：
@@ -573,6 +681,7 @@ PPT 三个标准：
 
 ---
 
+<a id="3-5-peterson’s-solution"></a>
 ## 3.5 Peterson’s Solution ⭐⭐
 
 Peterson’s Solution 是教学用的 two-process software solution。
@@ -604,6 +713,7 @@ wants_in[i] = FALSE;
 
 ---
 
+<a id="3-6-hardware-synchronisation-testandset"></a>
 ## 3.6 Hardware Synchronisation：TestAndSet ⭐⭐⭐⭐
 
 `TestAndSet` 是 atomic instruction：
@@ -637,6 +747,7 @@ lock = FALSE;
 
 ---
 
+<a id="3-7-busy-waiting-spinning"></a>
 ## 3.7 Busy Waiting / Spinning ⭐⭐⭐⭐
 
 Spinning：线程一直循环检查锁有没有释放。
@@ -658,6 +769,7 @@ Spinning：线程一直循环检查锁有没有释放。
 
 ---
 
+<a id="3-8-sleep-wakeup-和-missing-wake-up"></a>
 ## 3.8 Sleep/Wakeup 和 Missing Wake-up ⭐⭐⭐⭐⭐
 
 PPT 讲：与其 spin，不如拿不到锁就 sleep，锁释放时 wake up。
@@ -678,6 +790,7 @@ A misses the wakeup and then sleeps forever.
 
 ---
 
+<a id="3-9-semaphore"></a>
 ## 3.9 Semaphore ⭐⭐⭐⭐⭐
 
 Semaphore 是更高级的同步工具。
@@ -707,6 +820,7 @@ signal(S):
 
 ---
 
+<a id="3-10-producer-consumer-bounded-buffer"></a>
 ## 3.10 Producer-Consumer / Bounded Buffer ⭐⭐⭐⭐⭐
 
 这是同步最经典模型。
@@ -763,6 +877,7 @@ pthread_mutex_unlock(&m);
 
 ---
 
+<a id="3-11-readers-writers-problem"></a>
 ## 3.11 Readers-Writers Problem ⭐⭐⭐⭐
 
 问题：
@@ -787,6 +902,7 @@ pthread_mutex_unlock(&m);
 
 ---
 
+<a id="3-12-deadlock-和-priority-inversion"></a>
 ## 3.12 Deadlock 和 Priority Inversion ⭐⭐⭐⭐
 
 PPT 提到使用 semaphore/lock 要小心。
@@ -806,12 +922,14 @@ Priority inversion：
 
 ---
 
+<a id="4-process-concept-and-context-switching"></a>
 # 4. Process Concept and Context Switching
 
 对应课件：`os_07_processes.pdf`
 
 ---
 
+<a id="4-1-what-is-a-process"></a>
 ## 4.1 What is a Process? ⭐⭐⭐⭐⭐
 
 PPT 定义：
@@ -837,6 +955,7 @@ PPT 定义：
 
 ---
 
+<a id="4-2-process-in-memory"></a>
 ## 4.2 Process in Memory ⭐⭐⭐⭐⭐
 
 典型内存布局：
@@ -873,6 +992,7 @@ low address
 
 ---
 
+<a id="4-3-process-states"></a>
 ## 4.3 Process States ⭐⭐⭐⭐⭐
 
 状态：
@@ -900,6 +1020,7 @@ running -> terminated    exit
 
 ---
 
+<a id="4-4-pcb-process-control-block"></a>
 ## 4.4 PCB：Process Control Block ⭐⭐⭐⭐⭐
 
 PCB 是 kernel 用来记录 process 信息的数据结构。
@@ -924,6 +1045,7 @@ A PCB stores all information the operating system needs to manage and later resu
 
 ---
 
+<a id="4-5-process-creation"></a>
 ## 4.5 Process Creation ⭐⭐⭐⭐
 
 PPT 重点：
@@ -946,6 +1068,7 @@ Unix/Linux 典型：
 
 ---
 
+<a id="4-6-process-termination"></a>
 ## 4.6 Process Termination ⭐⭐⭐
 
 进程终止原因：
@@ -959,6 +1082,7 @@ Unix/Linux 典型：
 
 ---
 
+<a id="4-7-context-switch"></a>
 ## 4.7 Context Switch ⭐⭐⭐⭐⭐
 
 定义：
@@ -991,6 +1115,7 @@ Context switching is necessary for multitasking, but too many context switches w
 
 ---
 
+<a id="5-scheduling"></a>
 # 5. Scheduling
 
 对应课件：`os_08_scheduling.pdf`
@@ -999,6 +1124,7 @@ Context switching is necessary for multitasking, but too many context switches w
 
 ---
 
+<a id="5-1-scheduling-problem"></a>
 ## 5.1 Scheduling Problem ⭐⭐⭐⭐⭐
 
 问题：多个 processes 竞争 CPU、disk、I/O devices。
@@ -1011,6 +1137,7 @@ OS 要定义 schedule 来决定：
 
 ---
 
+<a id="5-2-scheduling-queues"></a>
 ## 5.2 Scheduling Queues ⭐⭐⭐⭐
 
 | Queue | 中文 | 含义 |
@@ -1023,6 +1150,7 @@ OS 要定义 schedule 来决定：
 
 ---
 
+<a id="5-3-cpu-i-o-burst-cycle"></a>
 ## 5.3 CPU-I/O Burst Cycle ⭐⭐⭐⭐⭐
 
 程序执行通常在 CPU burst 和 I/O burst 之间交替：
@@ -1035,6 +1163,7 @@ PPT 提到：I/O 通常在一定时间后发生，因此这是 rescheduling 的�
 
 ---
 
+<a id="5-4-preemptive-scheduling"></a>
 ## 5.4 Preemptive Scheduling ⭐⭐⭐⭐⭐
 
 `preemptive scheduling`：OS 可以强制 process relinquish CPU。
@@ -1049,6 +1178,7 @@ PPT 提到：I/O 通常在一定时间后发生，因此这是 rescheduling 的�
 
 ---
 
+<a id="5-5-scheduling-criteria"></a>
 ## 5.5 Scheduling Criteria ⭐⭐⭐⭐⭐
 
 | Criteria | 中文 | 目标 |
@@ -1067,6 +1197,7 @@ PPT 提到：I/O 通常在一定时间后发生，因此这是 rescheduling 的�
 
 ---
 
+<a id="5-6-cpu-bound-vs-i-o-bound"></a>
 ## 5.6 CPU-bound vs I/O-bound ⭐⭐⭐⭐⭐
 
 | Type | 特点 | 适合策略 |
@@ -1082,6 +1213,7 @@ PPT 提到：I/O 通常在一定时间后发生，因此这是 rescheduling 的�
 
 ---
 
+<a id="5-7-fcfs-first-come-first-served"></a>
 ## 5.7 FCFS：First-Come, First-Served ⭐⭐⭐⭐
 
 特点：
@@ -1100,6 +1232,7 @@ PPT 提到：I/O 通常在一定时间后发生，因此这是 rescheduling 的�
 
 ---
 
+<a id="5-8-round-robin"></a>
 ## 5.8 Round Robin ⭐⭐⭐⭐⭐
 
 PPT：
@@ -1131,6 +1264,7 @@ time quantum 问题：
 
 ---
 
+<a id="5-9-sjf-shortest-job-first"></a>
 ## 5.9 SJF：Shortest Job First ⭐⭐⭐⭐
 
 特点：
@@ -1159,6 +1293,7 @@ time quantum 问题：
 
 ---
 
+<a id="5-10-priority-scheduling"></a>
 ## 5.10 Priority Scheduling ⭐⭐⭐⭐⭐
 
 特点：
@@ -1190,6 +1325,7 @@ time quantum 问题：
 
 ---
 
+<a id="5-11-multilevel-queue-scheduling"></a>
 ## 5.11 Multilevel Queue Scheduling ⭐⭐⭐⭐
 
 适用于 processes 可以分类：
@@ -1213,6 +1349,7 @@ time quantum 问题：
 
 ---
 
+<a id="5-12-multiprocessor-scheduling"></a>
 ## 5.12 Multiprocessor Scheduling ⭐⭐
 
 PPT 提到：
@@ -1224,12 +1361,14 @@ PPT 提到：
 
 ---
 
+<a id="6-memory-management"></a>
 # 6. Memory Management
 
 对应课件：`os7a.pdf`
 
 ---
 
+<a id="6-1-memory-management-的基本问题"></a>
 ## 6.1 Memory Management 的基本问题 ⭐⭐⭐⭐⭐
 
 PPT 核心：
@@ -1252,6 +1391,7 @@ logical address -> physical address
 
 ---
 
+<a id="6-2-address-binding-mapping"></a>
 ## 6.2 Address Binding / Mapping ⭐⭐⭐⭐
 
 地址映射可以发生在：
@@ -1264,6 +1404,7 @@ logical address -> physical address
 
 ---
 
+<a id="6-3-dynamic-linking"></a>
 ## 6.3 Dynamic Linking ⭐⭐⭐
 
 PPT：
@@ -1276,6 +1417,7 @@ PPT：
 
 ---
 
+<a id="6-4-swapping"></a>
 ## 6.4 Swapping ⭐⭐⭐⭐⭐
 
 Swapping：内存不够时，把某些 process 的 memory 转移到 disk。
@@ -1307,6 +1449,7 @@ Swapping：内存不够时，把某些 process 的 memory 转移到 disk。
 
 ---
 
+<a id="6-5-fragmentation"></a>
 ## 6.5 Fragmentation ⭐⭐⭐⭐
 
 两种 fragmentation：
@@ -1332,6 +1475,7 @@ Swapping：内存不够时，把某些 process 的 memory 转移到 disk。
 
 ---
 
+<a id="6-6-paging"></a>
 ## 6.6 Paging ⭐⭐⭐⭐⭐
 
 Paging：把 logical memory 和 physical memory 都分成固定大小单位。
@@ -1366,6 +1510,7 @@ PPT 原理：大 lookup table 用小而快的 cache 存最近使用项。
 
 ---
 
+<a id="6-7-segmentation"></a>
 ## 6.7 Segmentation ⭐⭐⭐⭐⭐
 
 Segmentation：按程序逻辑用途划分内存。
@@ -1393,6 +1538,7 @@ offset < segment limit ?
 
 ---
 
+<a id="6-8-paging-vs-segmentation"></a>
 ## 6.8 Paging vs Segmentation ⭐⭐⭐⭐⭐
 
 | 比较 | Paging | Segmentation |
@@ -1411,6 +1557,7 @@ Paging divides memory into fixed-size pages mainly to simplify allocation and av
 
 ---
 
+<a id="6-9-virtual-memory"></a>
 ## 6.9 Virtual Memory ⭐⭐⭐⭐⭐
 
 PPT 核心：
@@ -1432,6 +1579,7 @@ PPT 核心：
 
 ---
 
+<a id="6-10-demand-paging"></a>
 ## 6.10 Demand Paging ⭐⭐⭐⭐⭐
 
 Demand paging：需要某 page 时才加载。
@@ -1453,6 +1601,7 @@ Demand paging：需要某 page 时才加载。
 
 ---
 
+<a id="6-11-page-replacement-algorithms"></a>
 ## 6.11 Page Replacement Algorithms ⭐⭐⭐⭐⭐
 
 ### FIFO
@@ -1493,6 +1642,7 @@ LRU 近似。
 
 ---
 
+<a id="6-12-thrashing"></a>
 ## 6.12 Thrashing ⭐⭐⭐⭐⭐
 
 Thrashing：process 缺少足够 frames，频繁 page fault，大量时间花在换页而不是执行。
@@ -1516,6 +1666,7 @@ Thrashing：process 缺少足够 frames，频繁 page fault，大量时间花在
 
 ---
 
+<a id="6-13-linux-memory-notes"></a>
 ## 6.13 Linux Memory Notes ⭐⭐
 
 PPT 后面提到 Linux kernel/user memory、page caches 等。
@@ -1527,12 +1678,14 @@ PPT 后面提到 Linux kernel/user memory、page caches 等。
 
 ---
 
+<a id="7-file-systems"></a>
 # 7. File Systems
 
 对应课件：`os_09_filesys.pdf`
 
 ---
 
+<a id="7-1-file-system-的功能"></a>
 ## 7.1 File System 的功能 ⭐⭐⭐⭐⭐
 
 PPT 核心：
@@ -1560,6 +1713,7 @@ map logical file tree to physical disk blocks
 
 ---
 
+<a id="7-2-linked-allocation"></a>
 ## 7.2 Linked Allocation ⭐⭐⭐⭐
 
 每个 block 存指向下一个 block 的 pointer。
@@ -1576,6 +1730,7 @@ map logical file tree to physical disk blocks
 
 ---
 
+<a id="7-3-indexed-allocation-inode"></a>
 ## 7.3 Indexed Allocation / inode ⭐⭐⭐⭐⭐
 
 Indexed allocation：把 block pointers 存在一个 index block 中。
@@ -1603,6 +1758,7 @@ Linked allocation stores a pointer to the next block in each block, which makes 
 
 ---
 
+<a id="7-4-fat-example"></a>
 ## 7.4 FAT Example ⭐⭐
 
 PPT 用 FAT16 解释文件系统概念：
@@ -1621,12 +1777,14 @@ PPT 用 FAT16 解释文件系统概念：
 
 ---
 
+<a id="7-5-fat-limits"></a>
 ## 7.5 FAT Limits ⭐
 
 FAT12/FAT16/FAT32 的容量限制、bootsector 细节等偏图片演示和背景，除非老师特别强调，否则一句话带过。
 
 ---
 
+<a id="7-6-caching"></a>
 ## 7.6 Caching ⭐⭐⭐⭐
 
 文件系统慢，因为 disk access 慢。
@@ -1644,6 +1802,7 @@ Caching：把最近使用或可能再用的数据放在 memory 中。
 
 ---
 
+<a id="7-7-journaling-file-systems"></a>
 ## 7.7 Journaling File Systems ⭐⭐⭐⭐
 
 Journaling：修改真正文件系统结构前，先记录 log/journal。
@@ -1659,6 +1818,7 @@ Journaling：修改真正文件系统结构前，先记录 log/journal。
 
 ---
 
+<a id="7-8-disk-access-and-disk-scheduling"></a>
 ## 7.8 Disk Access and Disk Scheduling ⭐⭐⭐⭐
 
 Disk access 涉及移动磁头，顺序很重要。
@@ -1679,10 +1839,12 @@ PPT 强调 LOOK scheduling improvement。
 
 ---
 
+<a id="8-最容易被忽略但考试爱问的连接点"></a>
 # 8. 最容易被忽略但考试爱问的连接点
 
 ---
 
+<a id="8-1-printf-scanf-与-system-call"></a>
 ## 8.1 printf/scanf 与 system call
 
 `printf()` 和 `scanf()` 是 C library functions，但读写 terminal 通常要通过 `read/write` system call。
@@ -1701,6 +1863,7 @@ printf is a library function that may invoke the write system call to output dat
 
 ---
 
+<a id="8-2-为什么-producer-也要-wait"></a>
 ## 8.2 为什么 producer 也要 wait？
 
 bounded buffer 中：
@@ -1716,6 +1879,7 @@ bounded buffer 中：
 
 ---
 
+<a id="8-3-为什么-condition-variable-总是配-mutex"></a>
 ## 8.3 为什么 condition variable 总是配 mutex？
 
 因为要避免：
@@ -1742,6 +1906,7 @@ pthread_mutex_unlock(&m);
 
 ---
 
+<a id="8-4-最大化-parallelism-的答题思想"></a>
 ## 8.4 最大化 parallelism 的答题思想
 
 如果题目说：
@@ -1769,6 +1934,7 @@ handle(r);                  // handle() thread-safe, 放锁外
 
 ---
 
+<a id="9-图片-背景材料一句话带过清单"></a>
 # 9. 图片/背景材料一句话带过清单
 
 以下内容主要是 PPT 图示或背景，不是最值得押的大题的地方：
@@ -1782,6 +1948,7 @@ handle(r);                  // handle() thread-safe, 放锁外
 
 ---
 
+<a id="10-最后复习优先级"></a>
 # 10. 最后复习优先级
 
 如果时间紧，按这个顺序复习：
