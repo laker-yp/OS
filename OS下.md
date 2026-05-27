@@ -1507,7 +1507,8 @@ physical address = frame number + offset
 
 - TLB：Translation Lookaside Buffer。
 
-PPT 原理：大 lookup table 用小而快的 cache 存最近使用项。
+CPU 用 TLB 这个小而快的cache，保存`最近用过的页`表项。
+如果下次还访问这些 page，就可以直接从 TLB 得到翻译结果
 
 ---
 
