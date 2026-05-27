@@ -824,28 +824,28 @@ empty      // 空槽数量
 full       // 已有 item 数量
 ```
 
-Producer：
+Producer生产者：
 
 ```c
-wait(empty);
+wait(empty);  检查有没有空位；empty--空槽数量减1
 wait(mutex);
 
-// add item to buffer
+// 往 buffer 里加东西
 
-signal(mutex);
-signal(full);
+signal(mutex); 
+signal(full);   //full++；告诉consumer：item 数量++，现在多了一个 item 可以拿。
 ```
 
-Consumer：
+Consumer消费者：
 
 ```c
-wait(full);
+wait(full);  //full > 0才代表有东西；拿了之后item数量减1，full--
 wait(mutex);
 
-// remove item from buffer
+// 往 buffer 里加东西取东西
 
 signal(mutex);
-signal(empty);
+signal(empty); //拿走之后空槽数量加1，empty++
 ```
 
 对应 pthread condition variable 写法：
