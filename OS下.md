@@ -420,9 +420,10 @@ Kernel 里共享数据结构可能被不同 context 同时访问：
 
 考试核心判断：
 
-- 临界区可能 sleep？不要用 spinlock 包住会 sleep 的代码。
-- 临界区在 interrupt handler 中？不能用 mutex/semaphore。
-- 临界区很短、在 kernel/interrupt 中？spinlock 合理。
+- 临界区可能 sleep？不要用 spinlock 包住会 sleep 的代码
+- 临界区在 interrupt handler 中？不能用 mutex/semaphore，因为它们可能导致 sleep。
+- 临界区很短、在 kernel/interrupt 中？使用 spinlock 合理
+- 
 
 答题模板：
 
