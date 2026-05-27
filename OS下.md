@@ -1162,6 +1162,8 @@ CPU burst -> I/O wait -> CPU burst -> I/O wait -> ...
 
 PPT 提到：I/O 通常在一定时间后发生，因此这是 rescheduling 的好时机。
 
+因为 I/O 会让当前进程“暂时没法继续跑”，所以 OS 正好可以趁这个机会把 CPU 让给别人。
+
 ---
 
 <a id="5-4-preemptive-scheduling"></a>
