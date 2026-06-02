@@ -39,7 +39,7 @@ if (tmp == NULL) {
 * 如果 name 是字符数组`char name[20];`，不能这样赋值：`s1.name = "Tom"; `，能这样赋值的只有Int：`s1.age = 20;`
 * 如果 name 是字符指针` char *name`   就可以这样赋值  `s1.name = "Tom";`   // ✅ 可以
 * 如果想在函数里修改结构体，通常传结构体指针。比如`changeAge(&s1);`传入s1的地址就相当于指针了
-* 
+* struct 里面每个成员都有自己的内存；union 里面所有成员共用同一块内存，意思是union里面给name传数据再给age传数据的话，name就被覆盖了
 
 
 
