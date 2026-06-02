@@ -36,6 +36,10 @@ if (tmp == NULL) {
 * 不同`thread`除了stack是自己独享之外，heap什么的都是和别的t共享的
 * `arr` 在很多表达式中会退化为指向第一个元素的指针：arr == &arr[0], 所以`p++`就可以遍历
 * `allocate`分配（分配地址）
+* 如果 name 是字符数组`char name[20];`，不能这样赋值：`s1.name = "Tom"; `，能这样赋值的只有Int：`s1.age = 20;`
+* 如果 name 是字符指针` char *name`   就可以这样赋值  `s1.name = "Tom";`   // ✅ 可以
+* 如果想在函数里修改结构体，通常传结构体指针。比如`changeAge(&s1);`传入s1的地址就相当于指针了
+* 
 
 
 
