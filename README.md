@@ -35,3 +35,29 @@ if (tmp == NULL) {
 * `pthread_join` ensures that one thread waits for another thread to finish
 * 不同`thread`除了stack是自己独享之外，heap什么的都是和别的t共享的
 * `arr` 在很多表达式中会退化为指向第一个元素的指针：arr == &arr[0], 所以`p++`就可以遍历
+* `allocate`分配（分配地址）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
