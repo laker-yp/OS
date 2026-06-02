@@ -33,3 +33,5 @@ if (tmp == NULL) {
 
 * `coherence 问题`如果 Core1 和 Core2 都缓存了同一个变量 counter，core1 改了，core2 的 cache 中的counter可能还是旧值。
 * `pthread_join` ensures that one thread waits for another thread to finish
+* 不同`thread`除了stack是自己独享之外，heap什么的都是和别的t共享的
+* `arr` 在很多表达式中会退化为指向第一个元素的指针：arr == &arr[0], 所以`p++`就可以遍历
