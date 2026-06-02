@@ -1,3 +1,6 @@
+* `parallelism `
+并行性
+
 * malloc(strlen(newTitle) + 1) 加1是因为length的计算不带/0
 
 * `static variable` 在 data segment。
@@ -29,3 +32,4 @@ if (tmp == NULL) {
 * `EOF` 是 int，通常是 -1
 
 * `coherence 问题`如果 Core1 和 Core2 都缓存了同一个变量 counter，core1 改了，core2 的 cache 中的counter可能还是旧值。
+* `pthread_join` ensures that one thread waits for another thread to finish
