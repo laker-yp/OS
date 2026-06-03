@@ -44,6 +44,8 @@ if (tmp == NULL) {
 * ↑用户程序通过 system calls 访问 /dev/... 这种设备文件；kernel 根据设备文件找到对应的 device driver
 * interrupt handler结束的时候会清理`interrupt bit`，否者别的p以为还没结素
 * `Synchronisation`
+* `critical section` is a part of a program where `shared data` are accessed. It must not be executed by more than one t/p at the same time
+* `Mutual Exclusion`, `progress`, `bounded waiting`
 
 
 
