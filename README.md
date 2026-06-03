@@ -49,6 +49,8 @@
 *  `Page fault`: when a P tries to access a page that is not in physical M, so the OS must load it from disk.
 *  `invoke `调用
 *  ` A is exclusive to B` A是B专属的
+*  `trylock`拿不到锁就直接放弃，同时预防`dead lock`
+*  `trap` 是从 user mode 进入 kernel mode 的机制, `system call` 通过 trap 实现
 
 
 
