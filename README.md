@@ -11,16 +11,6 @@
 
 * `realloc` 最好用临时指针
 
-* p = realloc(p, newSize); 把原来 p 指向的内存改变，如果失败，返回 NULL，原来的地址可能丢了，造成 memory leak。
-```c
-int *tmp = realloc(p, newSize);
-if (tmp == NULL) {
-    // p is still valid
-} else {
-    p = tmp;
-}
-```
-
 * `a->b` a 必须是“指向结构体/联合体的指针”，b 必须是这个结构体/联合体里面的成员名。
 
 * `a` 通常表示 `&a[0]`
@@ -46,8 +36,25 @@ if (tmp == NULL) {
 * `Synchronisation`
 * `critical section` is a part of a program where `shared data` are accessed. It must not be executed by more than one t/p at the same time
 * `Mutual Exclusion`, `progress`, `bounded waiting`
+* `parallelism`并发性
+* `PCB` stores all info ab the OS needs to manage/resume P
+* `time slice` expired 后被 preempt, 放回 ready queue
+* `starvation`
+* `ageing`：等待越久，priority 越高
+*  `TLB` 这个小而快的cache，保存最近用过的页
+*  `Paging` divides M into fixed-size pages, avoid external fragmentation.
+*  `Segmentation` divides M according to the logical structure of a program
+*  
 
-
+* p = realloc(p, newSize); 把原来 p 指向的内存改变，如果失败，返回 NULL，原来的地址可能丢了，造成 memory leak。
+```c
+int *tmp = realloc(p, newSize);
+if (tmp == NULL) {
+    // p is still valid
+} else {
+    p = tmp;
+}
+```
 
 
 
