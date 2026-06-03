@@ -44,7 +44,16 @@
 *  `TLB` 这个小而快的cache，保存最近用过的页
 *  `Paging` divides M into fixed-size pages, avoid external fragmentation.
 *  `Segmentation` divides M according to the logical structure of a program
-*  
+*  why `virtual M` : P typically use small part of M frequently
+*  虚拟内存就是 OS 让每个P以为自己有big,continuous M，但实际上由系统把这些VM map到真实physical M
+*  `Page fault`: when a P tries to access a page that is not in physical M, so the OS must load it from disk.
+*  `invoke `调用
+*  ` A is exclusive to B` A是B专属的
+
+
+
+
+
 
 * p = realloc(p, newSize); 把原来 p 指向的内存改变，如果失败，返回 NULL，原来的地址可能丢了，造成 memory leak。
 ```c
