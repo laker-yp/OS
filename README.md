@@ -2,6 +2,7 @@
 并行性
 
 * malloc(strlen(newTitle) + 1) 加1是因为length的计算不带/0
+ * strncpy(dst, from, length - 1) 减1是因为要留一个给\0
 
 * `static variable` 在 data segment。
 
